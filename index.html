@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>CV Builder – Welkom</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Merriweather:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background: #ebedef;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      font-family: var(--font-sans, "Inter", system-ui, sans-serif);
+    }
+    .welcome-card {
+      background: #ffffff;
+      max-width: 720px;
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 18px 45px rgba(15,23,42,0.12);
+      padding: 28px 32px 24px;
+      border: 1px solid #e5e7eb;
+    }
+    .welcome-title {
+      font-family: "Merriweather", "Georgia", serif;
+      font-size: 26px;
+      color: #b33636;
+      margin-bottom: 4px;
+    }
+    .welcome-subtitle {
+      font-size: 14px;
+      color: #6b7280;
+      margin-bottom: 16px;
+    }
+    .welcome-section-title {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #9b1c1c;
+      margin-top: 10px;
+      margin-bottom: 4px;
+    }
+    .welcome-list {
+      font-size: 13px;
+      color: #374151;
+      margin-left: 16px;
+      margin-bottom: 4px;
+    }
+    .welcome-list li {
+      margin-bottom: 2px;
+    }
+    .welcome-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 16px;
+      font-size: 12px;
+      color: #6b7280;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      border: none;
+      padding: 7px 16px 8px;
+      background: #b33636;
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn-primary:hover {
+      background: #9b1c1c;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      padding: 2px 10px 3px;
+      font-size: 11px;
+      color: #6b7280;
+      background: #f9fafb;
+      margin-right: 4px;
+      margin-top: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="welcome-card">
+    <h1 class="welcome-title">Welkom bij je CV-builder</h1>
+    <p class="welcome-subtitle">
+      Op de volgende pagina vul je links je gegevens in en zie je rechts direct je CV in de juiste opmaak.
+      Je kunt hem daarna als PDF opslaan of delen.
+    </p>
+
+    <div>
+      <div class="welcome-section-title">Wat kun je hier doen?</div>
+      <ul class="welcome-list">
+        <li>Personalia, vaardigheden, opleidingen en werkervaring invullen.</li>
+        <li>Vaardigheden, talen en hobby’s dynamisch toevoegen of verwijderen.</li>
+        <li>Een eigen profielfoto uploaden.</li>
+        <li>Je CV als nette PDF opslaan via de print-functie van je browser.</li>
+      </ul>
+
+      <div class="welcome-section-title">Tips</div>
+      <ul class="welcome-list">
+        <li>Gebruik korte, krachtige beschrijvingen in de ik-vorm.</li>
+        <li>Vul alleen onderdelen in die relevant zijn (LinkedIn is bijvoorbeeld optioneel).</li>
+        <li>Controleer de PDF-weergave door even te printen naar “Opslaan als PDF”.</li>
+      </ul>
+
+      <div class="welcome-section-title">Techniek</div>
+      <div class="welcome-list" style="list-style:none;margin-left:0;">
+        <span class="pill">Werkt in elke moderne browser</span>
+        <span class="pill">Geen data opgeslagen op een server</span>
+        <span class="pill">Alles draait in je eigen browser</span>
+      </div>
+    </div>
+
+    <div class="welcome-footer">
+      <span>Als je klaar bent, klik je hieronder om je CV te maken.</span>
+      <a href="cv.html" class="btn-primary">
+        Start CV invullen
+        <span>→</span>
+      </a>
+    </div>
+  </div>
+</body>
+</html>
