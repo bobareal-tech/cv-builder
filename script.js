@@ -49,7 +49,7 @@ const PERSONAL_FIELDS = [
     targets: ["licenseDisplay"],
     multiline: false,
     hint: "Hier kan je rijbewijs komen te staan.",
-    optionalRowId: "licenseRow"
+    optionalRowId: "licenseRow" // rijbewijs verbergen als leeg
   },
   {
     id: "gender",
@@ -124,7 +124,7 @@ function bindBullets(textarea, listEl) {
   update();
 }
 
-// titles in sidebar (vaardigheden, talen, hobby's, social)
+// sectie-titels in sidebar (vaardigheden, talen, hobby's, social)
 function refreshSidebarSection(containerId) {
   const container = document.getElementById(containerId);
   if (!container) return;
@@ -140,7 +140,7 @@ function refreshSidebarSection(containerId) {
   if (hr) hr.style.display = display;
 }
 
-// titles in main (opleidingen, werkervaring)
+// sectie-titels in main (opleidingen, werkervaring)
 function refreshMainSection(containerId) {
   const container = document.getElementById(containerId);
   if (!container) return;
@@ -385,10 +385,594 @@ function buildEditor() {
   });
 }
 
-// ---------- VAARDIGHEDEN, TALEN, HOBBY'S, OPLEIDINGEN, WERKERVARING, SOCIAL ----------
-// (zelfde code als eerder, maar ik laat hem hier weg om dit bericht niet nóg langer te maken)
-// 👉 Gebruik gewoon de versie die ik je in het vorige lange script heb gestuurd – die werkt.
-// Belangrijk is: onderaan moeten de INIT + EXPORT handlers staan zoals hieronder:
+// ---------- VAARDIGHEDEN ----------
+
+function addSkillRow() {
+  const editorList = document.getElementById("skillsEditorList");
+  const cvList = document.getElementById("skillsList");
+  if (!editorList || !cvList) return;
+
+  const id = ++skillCounter;
+
+  const cvLi = el("li");
+  cvLi.dataset.id = String(id);
+  const nameSpan = el("span", "skill-name");
+  const dotsSpan = el("span", "dots");
+  for (let i = 0; i < 5; i++) dotsSpan.appendChild(el("span", "dot"));
+  cvLi.appendChild(nameSpan);
+  cvLi.appendChild(dotsSpan);
+  cvLi.style.display = "none";
+  cvList.appendChild(cvLi);
+
+  const row = el("div", "editor-row");
+  row.dataset.id = String(id);
+
+  const header = el("div", "editor-row-header");
+  header.appendChild(el("div", "editor-row-title", "Vaardigheid"));
+  const actions = el("div", "row-actions");
+  const removeBtn = el("button", "btn-icon remove", "–");
+  removeBtn.type = "button";
+  actions.appendChild(removeBtn);
+  header.appendChild(actions);
+  row.appendChild(header);
+
+  const ffName = el("div", "form-field");
+  const lblName = el("label");
+  lblName.textContent = "Naam";
+  const inputName = el("input");
+  inputName.type = "text";
+  const hintName = el("div", "hint-text", "Hier kan een vaardigheid komen te staan.");
+  ffName.appendChild(lblName);
+  ffName.appendChild(inputName);
+  ffName.appendChild(hintName);
+  row.appendChild(ffName);
+
+  const ffLevel = el("div", "form-field");
+  const lblLevel = el("label");
+  lblLevel.textContent = "Niveau (0–5)";
+  const range = el("input");
+  range.type = "range";
+  range.min = "0";
+  range.max = "5";
+  range.value = "0";
+  ffLevel.appendChild(lblLevel);
+  ffLevel.appendChild(range);
+  row.appendChild(ffLevel);
+
+  editorList.appendChild(row);
+
+  inputName.addEventListener("input", () => {
+    const v = inputName.value.trim();
+    if (!v) {
+      nameSpan.textContent = "";
+      cvLi.style.display = "none";
+    } else {
+      nameSpan.textContent = v;
+      cvLi.style.display = "";
+    }
+    refreshSidebarSection("skillsList");
+  });
+
+  range.addEventListener("input", () => {
+    const level = Math.max(0, Math.min(5, parseInt(range.value || "0", 10)));
+    dotsSpan.querySelectorAll(".dot").forEach((d, idx) => {
+      d.classList.toggle("full", idx < level);
+    });
+  });
+
+  removeBtn.addEventListener("click", () => {
+    editorList.removeChild(row);
+    cvList.removeChild(cvLi);
+    refreshSidebarSection("skillsList");
+  });
+
+  refreshSidebarSection("skillsList");
+}
+
+// ---------- TALEN ----------
+
+function addLanguageRow() {
+  const editorList = document.getElementById("langsEditorList");
+  const container = document.getElementById("languagesContainer");
+  if (!editorList || !container) return;
+
+  const id = ++langCounter;
+
+  const cvRow = el("div", "lang-row");
+  cvRow.dataset.id = String(id);
+  const nameSpan = el("span");
+  const dotsSpan = el("span", "dots");
+  for (let i = 0; i < 5; i++) dotsSpan.appendChild(el("span", "dot"));
+  cvRow.appendChild(nameSpan);
+  cvRow.appendChild(dotsSpan);
+  cvRow.style.display = "none";
+  container.appendChild(cvRow);
+
+  const row = el("div", "editor-row");
+  row.dataset.id = String(id);
+
+  const header = el("div", "editor-row-header");
+  header.appendChild(el("div", "editor-row-title", "Taal"));
+  const actions = el("div", "row-actions");
+  const removeBtn = el("button", "btn-icon remove", "–");
+  removeBtn.type = "button";
+  actions.appendChild(removeBtn);
+  header.appendChild(actions);
+  row.appendChild(header);
+
+  const ffName = el("div", "form-field");
+  const lblName = el("label");
+  lblName.textContent = "Taal";
+  const inputName = el("input");
+  inputName.type = "text";
+  const hintName = el("div", "hint-text", "Hier kan een taal komen te staan.");
+  ffName.appendChild(lblName);
+  ffName.appendChild(inputName);
+  ffName.appendChild(hintName);
+  row.appendChild(ffName);
+
+  const ffLevel = el("div", "form-field");
+  const lblLevel = el("label");
+  lblLevel.textContent = "Niveau (0–5)";
+  const range = el("input");
+  range.type = "range";
+  range.min = "0";
+  range.max = "5";
+  range.value = "0";
+  ffLevel.appendChild(lblLevel);
+  ffLevel.appendChild(range);
+  row.appendChild(ffLevel);
+
+  editorList.appendChild(row);
+
+  inputName.addEventListener("input", () => {
+    const v = inputName.value.trim();
+    if (!v) {
+      nameSpan.textContent = "";
+      cvRow.style.display = "none";
+    } else {
+      nameSpan.textContent = v;
+      cvRow.style.display = "";
+    }
+    refreshSidebarSection("languagesContainer");
+  });
+
+  range.addEventListener("input", () => {
+    const level = Math.max(0, Math.min(5, parseInt(range.value || "0", 10)));
+    dotsSpan.querySelectorAll(".dot").forEach((d, idx) => {
+      d.classList.toggle("full", idx < level);
+    });
+  });
+
+  removeBtn.addEventListener("click", () => {
+    editorList.removeChild(row);
+    container.removeChild(cvRow);
+    refreshSidebarSection("languagesContainer");
+  });
+
+  refreshSidebarSection("languagesContainer");
+}
+
+// ---------- HOBBY'S ----------
+
+function addHobbyRow() {
+  const editorList = document.getElementById("hobbiesEditorList");
+  const cvList = document.getElementById("hobbyList");
+  if (!editorList || !cvList) return;
+
+  const id = ++hobbyCounter;
+
+  const cvLi = el("li");
+  cvLi.dataset.id = String(id);
+  const sq = el("span", "square");
+  const txt = el("span");
+  cvLi.appendChild(sq);
+  cvLi.appendChild(txt);
+  cvLi.style.display = "none";
+  cvList.appendChild(cvLi);
+
+  const row = el("div", "editor-row");
+  row.dataset.id = String(id);
+
+  const header = el("div", "editor-row-header");
+  header.appendChild(el("div", "editor-row-title", "Hobby"));
+  const actions = el("div", "row-actions");
+  const removeBtn = el("button", "btn-icon remove", "–");
+  removeBtn.type = "button";
+  actions.appendChild(removeBtn);
+  header.appendChild(actions);
+  row.appendChild(header);
+
+  const ffName = el("div", "form-field");
+  const lblName = el("label");
+  lblName.textContent = "Omschrijving";
+  const inputName = el("input");
+  inputName.type = "text";
+  const hintName = el("div", "hint-text", "Hier kan een hobby of interesse komen te staan.");
+  ffName.appendChild(lblName);
+  ffName.appendChild(inputName);
+  ffName.appendChild(hintName);
+  row.appendChild(ffName);
+  editorList.appendChild(row);
+
+  inputName.addEventListener("input", () => {
+    const v = inputName.value.trim();
+    if (!v) {
+      txt.textContent = "";
+      cvLi.style.display = "none";
+    } else {
+      txt.textContent = v;
+      cvLi.style.display = "";
+    }
+    refreshSidebarSection("hobbyList");
+  });
+
+  removeBtn.addEventListener("click", () => {
+    editorList.removeChild(row);
+    cvList.removeChild(cvLi);
+    refreshSidebarSection("hobbyList");
+  });
+
+  refreshSidebarSection("hobbyList");
+}
+
+// ---------- OPLEIDINGEN ----------
+
+function addEducationBlock() {
+  const editorList = document.getElementById("eduEditorList");
+  const cvContainer = document.getElementById("eduContainer");
+  if (!editorList || !cvContainer) return;
+
+  const id = ++eduCounter;
+
+  const cvItem = el("div", "edu-item");
+  cvItem.dataset.id = String(id);
+  const header = el("div", "edu-header");
+  const tSpan = el("div", "title");
+  const pSpan = el("div", "period");
+  header.appendChild(tSpan);
+  header.appendChild(pSpan);
+  const loc = el("div", "location-link");
+  const intro = el("div");
+  intro.style.marginTop = "3px";
+  const bullets = el("ul", "bullets");
+  cvItem.appendChild(header);
+  cvItem.appendChild(loc);
+  cvItem.appendChild(intro);
+  cvItem.appendChild(bullets);
+  cvItem.style.display = "none";
+  cvContainer.appendChild(cvItem);
+
+  const updateVisibility = () => {
+    const hasText =
+      tSpan.textContent.trim() ||
+      pSpan.textContent.trim() ||
+      loc.textContent.trim() ||
+      intro.textContent.trim() ||
+      bullets.children.length > 0;
+    cvItem.style.display = hasText ? "" : "none";
+    refreshMainSection("eduContainer");
+  };
+
+  const row = el("div", "editor-row");
+  row.dataset.id = String(id);
+
+  const rHead = el("div", "editor-row-header");
+  rHead.appendChild(el("div", "editor-row-title", "Opleiding"));
+  const acts = el("div", "row-actions");
+  const removeBtn = el("button", "btn-icon remove", "–");
+  removeBtn.type = "button";
+  acts.appendChild(removeBtn);
+  rHead.appendChild(acts);
+  row.appendChild(rHead);
+
+  const fTitle = el("div", "form-field");
+  const lTitle = el("label");
+  lTitle.textContent = "Titel / niveau";
+  const iTitle = el("input");
+  iTitle.type = "text";
+  const hTitle = el("div", "hint-text", "Hier kan de opleidingsnaam komen te staan.");
+  fTitle.appendChild(lTitle);
+  fTitle.appendChild(iTitle);
+  fTitle.appendChild(hTitle);
+  row.appendChild(fTitle);
+
+  const fSchool = el("div", "form-field");
+  const lSchool = el("label");
+  lSchool.textContent = "School + plaats";
+  const iSchool = el("input");
+  iSchool.type = "text";
+  const hSchool = el("div", "hint-text", "Hier kan de school en plaats komen te staan.");
+  fSchool.appendChild(lSchool);
+  fSchool.appendChild(iSchool);
+  fSchool.appendChild(hSchool);
+  row.appendChild(fSchool);
+
+  const fPeriod = el("div", "form-field");
+  const lPeriod = el("label");
+  lPeriod.textContent = "Periode";
+  const iPeriod = el("input");
+  iPeriod.type = "text";
+  const hPeriod = el("div", "hint-text", "Hier kan de periode van je opleiding komen te staan.");
+  fPeriod.appendChild(lPeriod);
+  fPeriod.appendChild(iPeriod);
+  fPeriod.appendChild(hPeriod);
+  row.appendChild(fPeriod);
+
+  const fIntro = el("div", "form-field");
+  const lIntro = el("label");
+  lIntro.textContent = "Korte omschrijving";
+  const iIntro = el("textarea");
+  const hIntro = el("div", "hint-text", "Hier kan een korte omschrijving van je opleiding komen te staan.");
+  fIntro.appendChild(lIntro);
+  fIntro.appendChild(iIntro);
+  fIntro.appendChild(hIntro);
+  row.appendChild(fIntro);
+
+  const fBul = el("div", "form-field");
+  const lBul = el("label");
+  lBul.textContent = "Belangrijkste leerpunten (één per regel)";
+  const iBul = el("textarea");
+  const hBul = el("div", "hint-text", "Hier kunnen je leerpunten per regel komen te staan.");
+  fBul.appendChild(lBul);
+  fBul.appendChild(iBul);
+  fBul.appendChild(hBul);
+  row.appendChild(fBul);
+
+  editorList.appendChild(row);
+
+  iTitle.addEventListener("input", () => {
+    tSpan.textContent = iTitle.value.trim();
+    updateVisibility();
+  });
+  iSchool.addEventListener("input", () => {
+    loc.textContent = iSchool.value.trim();
+    updateVisibility();
+  });
+  iPeriod.addEventListener("input", () => {
+    pSpan.textContent = iPeriod.value.trim();
+    updateVisibility();
+  });
+  iIntro.addEventListener("input", () => {
+    intro.textContent = iIntro.value.trim();
+    updateVisibility();
+  });
+  bindBullets(iBul, bullets);
+  iBul.addEventListener("input", updateVisibility);
+
+  removeBtn.addEventListener("click", () => {
+    editorList.removeChild(row);
+    cvContainer.removeChild(cvItem);
+    refreshMainSection("eduContainer");
+  });
+
+  refreshMainSection("eduContainer");
+}
+
+// ---------- WERKERVARING ----------
+
+function addJobBlock() {
+  const editorList = document.getElementById("jobEditorList");
+  const cvContainer = document.getElementById("expContainer");
+  if (!editorList || !cvContainer) return;
+
+  const id = ++jobCounter;
+
+  const cvItem = el("div", "exp-item");
+  cvItem.dataset.id = String(id);
+  const header = el("div", "exp-header");
+  const tSpan = el("div", "title");
+  const pSpan = el("div", "period");
+  header.appendChild(tSpan);
+  header.appendChild(pSpan);
+  const loc = el("div", "location-link");
+  const bullets = el("ul", "bullets");
+  cvItem.appendChild(header);
+  cvItem.appendChild(loc);
+  cvItem.appendChild(bullets);
+  cvItem.style.display = "none";
+  cvContainer.appendChild(cvItem);
+
+  const updateVisibility = () => {
+    const hasText =
+      tSpan.textContent.trim() ||
+      pSpan.textContent.trim() ||
+      loc.textContent.trim() ||
+      bullets.children.length > 0;
+    cvItem.style.display = hasText ? "" : "none";
+    refreshMainSection("expContainer");
+  };
+
+  const row = el("div", "editor-row");
+  row.dataset.id = String(id);
+
+  const rHead = el("div", "editor-row-header");
+  rHead.appendChild(el("div", "editor-row-title", "Functie"));
+  const acts = el("div", "row-actions");
+  const removeBtn = el("button", "btn-icon remove", "–");
+  removeBtn.type = "button";
+  acts.appendChild(removeBtn);
+  rHead.appendChild(acts);
+  row.appendChild(rHead);
+
+  const fTitle = el("div", "form-field");
+  const lTitle = el("label");
+  lTitle.textContent = "Functietitel";
+  const iTitle = el("input");
+  iTitle.type = "text";
+  const hTitle = el("div", "hint-text", "Hier kan je functietitel komen te staan.");
+  fTitle.appendChild(lTitle);
+  fTitle.appendChild(iTitle);
+  fTitle.appendChild(hTitle);
+  row.appendChild(fTitle);
+
+  const fCompany = el("div", "form-field");
+  const lCompany = el("label");
+  lCompany.textContent = "Bedrijf + plaats";
+  const iCompany = el("input");
+  iCompany.type = "text";
+  const hCompany = el("div", "hint-text", "Hier kan het bedrijf en de plaats komen te staan.");
+  fCompany.appendChild(lCompany);
+  fCompany.appendChild(iCompany);
+  fCompany.appendChild(hCompany);
+  row.appendChild(fCompany);
+
+  const fPeriod = el("div", "form-field");
+  const lPeriod = el("label");
+  lPeriod.textContent = "Periode";
+  const iPeriod = el("input");
+  iPeriod.type = "text";
+  const hPeriod = el("div", "hint-text", "Hier kan de periode van je functie komen te staan.");
+  fPeriod.appendChild(lPeriod);
+  fPeriod.appendChild(iPeriod);
+  fPeriod.appendChild(hPeriod);
+  row.appendChild(fPeriod);
+
+  const fBul = el("div", "form-field");
+  const lBul = el("label");
+  lBul.textContent = "Belangrijkste taken (één per regel)";
+  const iBul = el("textarea");
+  const hBul = el("div", "hint-text", "Hier kunnen je taken per regel komen te staan.");
+  fBul.appendChild(lBul);
+  fBul.appendChild(iBul);
+  fBul.appendChild(hBul);
+  row.appendChild(fBul);
+
+  editorList.appendChild(row);
+
+  iTitle.addEventListener("input", () => {
+    tSpan.textContent = iTitle.value.trim();
+    updateVisibility();
+  });
+  iCompany.addEventListener("input", () => {
+    loc.textContent = iCompany.value.trim();
+    updateVisibility();
+  });
+  iPeriod.addEventListener("input", () => {
+    pSpan.textContent = iPeriod.value.trim();
+    updateVisibility();
+  });
+  bindBullets(iBul, bullets);
+  iBul.addEventListener("input", updateVisibility);
+
+  removeBtn.addEventListener("click", () => {
+    editorList.removeChild(row);
+    cvContainer.removeChild(cvItem);
+    refreshMainSection("expContainer");
+  });
+
+  refreshMainSection("expContainer");
+}
+
+// ---------- SOCIAL MEDIA ----------
+
+function addSocialRow() {
+  const editorList = document.getElementById("socialsEditorList");
+  const cvList = document.getElementById("socialList");
+  if (!editorList || !cvList) return;
+
+  const id = ++socialCounter;
+
+  const cvLi = el("li");
+  cvLi.dataset.id = String(id);
+
+  const badge = el("span", "social-icon-badge social-icon-generic", "•");
+  const textSpan = el("span", "text");
+  cvLi.appendChild(badge);
+  cvLi.appendChild(textSpan);
+  cvLi.style.display = "none";
+  cvList.appendChild(cvLi);
+
+  const row = el("div", "editor-row");
+  row.dataset.id = String(id);
+
+  const header = el("div", "editor-row-header");
+  header.appendChild(el("div", "editor-row-title", "Social link"));
+  const actions = el("div", "row-actions");
+  const removeBtn = el("button", "btn-icon remove", "–");
+  removeBtn.type = "button";
+  actions.appendChild(removeBtn);
+  header.appendChild(actions);
+  row.appendChild(header);
+
+  const ffPlatform = el("div", "form-field");
+  const lblPlatform = el("label");
+  lblPlatform.textContent = "Platform";
+  const select = document.createElement("select");
+  select.innerHTML = `
+    <option value="">Kies platform...</option>
+    <option value="linkedin">LinkedIn</option>
+    <option value="x">X (Twitter)</option>
+    <option value="youtube">YouTube</option>
+    <option value="instagram">Instagram</option>
+    <option value="tiktok">TikTok</option>
+    <option value="github">GitHub</option>
+    <option value="anders">Anders...</option>
+  `;
+  ffPlatform.appendChild(lblPlatform);
+  ffPlatform.appendChild(select);
+  row.appendChild(ffPlatform);
+
+  const ffUrl = el("div", "form-field");
+  const lblUrl = el("label");
+  lblUrl.textContent = "Link (URL)";
+  const inputUrl = el("input");
+  inputUrl.type = "text";
+  const hintUrl = el("div", "hint-text", "Plak hier de link naar je profiel.");
+  ffUrl.appendChild(lblUrl);
+  ffUrl.appendChild(inputUrl);
+  ffUrl.appendChild(hintUrl);
+  row.appendChild(ffUrl);
+
+  editorList.appendChild(row);
+
+  const platformConfig = {
+    linkedin: { label: "in", className: "social-icon-linkedin" },
+    x: { label: "X", className: "social-icon-x" },
+    youtube: { label: "▶", className: "social-icon-youtube" },
+    instagram: { label: "IG", className: "social-icon-instagram" },
+    tiktok: { label: "♪", className: "social-icon-tiktok" },
+    github: { label: "{ }", className: "social-icon-github" },
+    anders: { label: "•", className: "social-icon-generic" }
+  };
+
+  function update() {
+    const platform = select.value || "anders";
+    const url = inputUrl.value.trim();
+
+    const cfg = platformConfig[platform];
+    badge.textContent = cfg.label;
+    badge.className = "social-icon-badge " + cfg.className;
+
+    if (!url && platform === "anders") {
+      textSpan.textContent = "";
+      cvLi.style.display = "none";
+      refreshSidebarSection("socialList");
+      return;
+    }
+
+    cvLi.style.display = "";
+
+    if (url) {
+      textSpan.textContent = url;
+    } else {
+      const label = select.options[select.selectedIndex]?.text || "";
+      textSpan.textContent = label;
+    }
+    refreshSidebarSection("socialList");
+  }
+
+  select.addEventListener("change", update);
+  inputUrl.addEventListener("input", update);
+
+  removeBtn.addEventListener("click", () => {
+    editorList.removeChild(row);
+    cvList.removeChild(cvLi);
+    refreshSidebarSection("socialList");
+  });
+
+  refreshSidebarSection("socialList");
+}
 
 // ---------- INIT + EXPORT ----------
 
