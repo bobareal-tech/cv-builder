@@ -2,138 +2,367 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
-  <title>CV Builder – Welkom</title>
+  <title>Gratis CV maken – Interactieve CV-builder</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Merriweather:wght@600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <style>
-    body {
-      background: #ebedef;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
-      font-family: var(--font-sans, "Inter", system-ui, sans-serif);
-    }
-    .welcome-card {
-      background: #ffffff;
-      max-width: 720px;
-      width: 100%;
-      border-radius: 16px;
-      box-shadow: 0 18px 45px rgba(15,23,42,0.12);
-      padding: 28px 32px 24px;
-      border: 1px solid #e5e7eb;
-    }
-    .welcome-title {
-      font-family: "Merriweather", "Georgia", serif;
-      font-size: 26px;
-      color: #b33636;
-      margin-bottom: 4px;
-    }
-    .welcome-subtitle {
-      font-size: 14px;
-      color: #6b7280;
-      margin-bottom: 16px;
-    }
-    .welcome-section-title {
-      font-size: 13px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #9b1c1c;
-      margin-top: 10px;
-      margin-bottom: 4px;
-    }
-    .welcome-list {
-      font-size: 13px;
-      color: #374151;
-      margin-left: 16px;
-      margin-bottom: 4px;
-    }
-    .welcome-list li {
-      margin-bottom: 2px;
-    }
-    .welcome-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 16px;
-      font-size: 12px;
-      color: #6b7280;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      border-radius: 999px;
-      border: none;
-      padding: 7px 16px 8px;
-      background: #b33636;
-      color: #ffffff;
-      font-size: 13px;
-      font-weight: 500;
-      cursor: pointer;
-      text-decoration: none;
-    }
-    .btn-primary:hover {
-      background: #9b1c1c;
-    }
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      border-radius: 999px;
-      border: 1px solid #e5e7eb;
-      padding: 2px 10px 3px;
-      font-size: 11px;
-      color: #6b7280;
-      background: #f9fafb;
-      margin-right: 4px;
-      margin-top: 4px;
-    }
-  </style>
+  <meta name="description"
+        content="Maak gratis een professionele CV in je browser. Geen account, geen opslag, alles blijft op jouw apparaat.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@600&display=swap"
+        rel="stylesheet">
+  <link rel="stylesheet" href="home.css">
 </head>
 <body>
-  <div class="welcome-card">
-    <h1 class="welcome-title">Welkom bij je CV-builder</h1>
-    <p class="welcome-subtitle">
-      Op de volgende pagina vul je links je gegevens in en zie je rechts direct je CV in de juiste opmaak.
-      Je kunt hem daarna als PDF opslaan of delen.
-    </p>
 
-    <div>
-      <div class="welcome-section-title">Wat kun je hier doen?</div>
-      <ul class="welcome-list">
-        <li>Personalia, vaardigheden, opleidingen en werkervaring invullen.</li>
-        <li>Vaardigheden, talen en hobby’s dynamisch toevoegen of verwijderen.</li>
-        <li>Een eigen profielfoto uploaden.</li>
-        <li>Je CV als nette PDF opslaan via de print-functie van je browser.</li>
-      </ul>
+<!-- SIDE BANNERS met jouw cartoon logo -->
+<div class="cv-side-layer" aria-hidden="true">
+  <img src="logo-cv.png" class="cv-side cv-side-1" alt="">
+  <img src="logo-cv.png" class="cv-side cv-side-2" alt="">
+  <img src="logo-cv.png" class="cv-side cv-side-3" alt="">
+  <img src="logo-cv.png" class="cv-side cv-side-4" alt="">
+</div>
 
-      <div class="welcome-section-title">Tips</div>
-      <ul class="welcome-list">
-        <li>Gebruik korte, krachtige beschrijvingen in de ik-vorm.</li>
-        <li>Vul alleen onderdelen in die relevant zijn (LinkedIn is bijvoorbeeld optioneel).</li>
-        <li>Controleer de PDF-weergave door even te printen naar “Opslaan als PDF”.</li>
-      </ul>
-
-      <div class="welcome-section-title">Techniek</div>
-      <div class="welcome-list" style="list-style:none;margin-left:0;">
-        <span class="pill">Werkt in elke moderne browser</span>
-        <span class="pill">Geen data opgeslagen op een server</span>
-        <span class="pill">Alles draait in je eigen browser</span>
+<header class="site-header">
+  <div class="wrapper header-inner">
+    <div class="brand">
+      <div class="brand-logo">
+        <img src="logo-cv.png" alt="CV Builder logo">
+      </div>
+      <div class="brand-text">
+        <div class="brand-name">CV Builder</div>
+        <div class="brand-tagline">Maak gratis een professionele CV in je browser</div>
       </div>
     </div>
+    <nav class="nav-links">
+      <a href="#features">Functies</a>
+      <a href="#hoe-werkt">Hoe het werkt</a>
+      <a href="#privacy">Privacy</a>
+      <a href="cv.html" class="primary">Start CV invullen</a>
+    </nav>
+  </div>
+</header>
 
-    <div class="welcome-footer">
-      <span>Als je klaar bent, klik je hieronder om je CV te maken.</span>
-      <a href="cv.html" class="btn-primary">
-        Start CV invullen
-        <span>→</span>
-      </a>
+<main class="site-main">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrapper hero-grid">
+      <div class="hero-text">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          <span class="hero-badge-label">Geen account nodig • Direct in je browser</span>
+        </div>
+
+        <h1>Maak gratis een <span class="accent">professionele CV</span> in je browser.</h1>
+
+        <p class="hero-subtitle">
+          Vul links je gegevens in, zie rechts meteen het resultaat en exporteer je CV als PDF of afbeelding.
+          Geen registratie, geen opslag op servers – alles blijft op je eigen apparaat.
+        </p>
+
+        <div class="hero-checks">
+          <div class="hero-check">
+            <span class="hero-check-icon">✓</span>
+            <span>Directe live-preview terwijl je typt</span>
+          </div>
+          <div class="hero-check">
+            <span class="hero-check-icon">✓</span>
+            <span>Werkt op desktop, laptop en tablet</span>
+          </div>
+          <div class="hero-check">
+            <span class="hero-check-icon">✓</span>
+            <span>Exporteer als PDF of afbeelding</span>
+          </div>
+        </div>
+
+        <div class="hero-cta-row">
+          <a href="cv.html" class="btn btn-primary">Start CV invullen</a>
+          <a href="#features" class="btn btn-ghost">Bekijk eerst de functies</a>
+        </div>
+
+        <p class="hero-hint">
+          Geen opslag op servers – je CV blijft lokaal in je browser.
+        </p>
+      </div>
+
+      <div class="hero-preview">
+        <div class="preview-header">
+          <div class="preview-title">Voorbeeld CV</div>
+          <div class="preview-toggle">
+            <span>Live-preview</span>
+            <div class="preview-toggle-knob">
+              <div class="preview-toggle-dot"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="preview-window">
+          <div class="preview-toolbar">
+            <div class="preview-dots">
+              <span class="preview-dot"></span>
+              <span class="preview-dot"></span>
+              <span class="preview-dot"></span>
+            </div>
+            <div class="preview-toolbar-text">cv-preview.pdf</div>
+          </div>
+
+          <div class="preview-body">
+            <div class="preview-cv">
+              <div class="preview-cv-inner">
+                <div class="preview-cv-name">Jouw Naam</div>
+                <div class="preview-cv-role">Functie / beroep</div>
+
+                <div class="preview-cv-section-title">Profiel</div>
+                <p class="preview-cv-paragraph">
+                  Korte, duidelijke samenvatting van wie je bent en wat je zoekt.
+                </p>
+
+                <div class="preview-cv-section-title">Ervaring</div>
+                <ul class="preview-cv-list">
+                  <li><strong>Functie</strong> – Bedrijf</li>
+                  <li><strong>Functie</strong> – Bedrijf</li>
+                </ul>
+
+                <div class="preview-cv-section-title">Vaardigheden</div>
+                <div class="preview-cv-skills">
+                  <span class="preview-cv-skill">Communicatie</span>
+                  <span class="preview-cv-skill">Teamwork</span>
+                  <span class="preview-cv-skill">Probleemoplossend</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="preview-controls">
+              <div class="preview-slider-group">
+                <div class="preview-slider-label">Lengte van je CV</div>
+                <div class="preview-slider-row">
+                  <span>Kort</span>
+                  <input type="range" min="1" max="3" value="2" disabled>
+                  <span>Uitgebreid</span>
+                </div>
+              </div>
+              <div class="preview-slider-group">
+                <div class="preview-slider-label">Voor wie?</div>
+                <div class="preview-pill-row">
+                  <span class="preview-pill">Starters</span>
+                  <span class="preview-pill">Ervaren professionals</span>
+                  <span class="preview-pill">Omscholers</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FUNCTIES -->
+  <section id="features" class="section">
+    <div class="wrapper">
+      <div class="section-header">
+        <div class="section-title">
+          <div class="section-kicker">Waarom deze CV-builder?</div>
+          <h2>Alles wat je nodig hebt, zonder poespas.</h2>
+        </div>
+        <p class="section-subtitle">
+          Geen lock-in, geen verborgen kosten. Gewoon in je browser een strak vormgegeven CV maken
+          en downloaden als PDF of afbeelding.
+        </p>
+      </div>
+
+      <div class="why-grid">
+        <article class="card reveal-on-scroll">
+          <div class="card-header">
+            <h3 class="card-title">Geen account nodig</h3>
+            <span class="card-tag">Privacy-vriendelijk</span>
+          </div>
+          <div class="card-body">
+            Alles wat je invult, blijft in jouw eigen browser. Er wordt niets naar servers gestuurd.
+          </div>
+          <ul class="card-list">
+            <li><span class="card-bullet"></span><span>Geen registratie of login.</span></li>
+            <li><span class="card-bullet"></span><span>Werkt ook offline zolang de pagina open staat.</span></li>
+          </ul>
+        </article>
+
+        <article class="card reveal-on-scroll">
+          <div class="card-header">
+            <h3 class="card-title">Directe live-preview</h3>
+            <span class="card-tag">Wat je ziet is wat je krijgt</span>
+          </div>
+          <div class="card-body">
+            Links invullen, rechts je CV. Je ziet direct hoe het er als PDF uit komt te zien –
+            inclusief opmaak en indeling.
+          </div>
+          <ul class="card-list">
+            <li><span class="card-bullet"></span><span>Geen verrassingen bij het downloaden.</span></li>
+            <li><span class="card-bullet"></span><span>Handig om snel varianten te testen.</span></li>
+          </ul>
+        </article>
+
+        <article class="card reveal-on-scroll">
+          <div class="card-header">
+            <h3 class="card-title">Flexibele opbouw</h3>
+            <span class="card-tag">Voor elk beroep</span>
+          </div>
+          <div class="card-body">
+            Voeg opleidingen, banen, talen, vaardigheden en hobby’s toe of laat ze weg.
+          </div>
+          <ul class="card-list">
+            <li><span class="card-bullet"></span><span>Secties verdwijnen automatisch als je ze leeg laat.</span></li>
+            <li><span class="card-bullet"></span><span>Geschikt voor starters én seniors.</span></li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOE HET WERKT -->
+  <section id="hoe-werkt" class="section">
+    <div class="wrapper">
+      <div class="section-header">
+        <div class="section-title">
+          <div class="section-kicker">Hoe werkt het?</div>
+          <h2>In drie stappen een nette PDF-CV.</h2>
+        </div>
+      </div>
+
+      <div class="steps-grid">
+        <div class="steps-list">
+          <div class="step-item reveal-on-scroll">
+            <div class="step-icon">1</div>
+            <div class="step-content">
+              <h3>Vul je gegevens in</h3>
+              <p>Persoonsgegevens, profieltekst, opleidingen, werkervaring, talen en vaardigheden.</p>
+            </div>
+          </div>
+
+          <div class="step-item reveal-on-scroll">
+            <div class="step-icon">2</div>
+            <div class="step-content">
+              <h3>Check de live-preview</h3>
+              <p>Je ziet direct hoe je CV eruitziet. Pas tekst en volgorde aan tot het klopt.</p>
+            </div>
+          </div>
+
+          <div class="step-item reveal-on-scroll">
+            <div class="step-icon">3</div>
+            <div class="step-content">
+              <h3>Download als PDF of afbeelding</h3>
+              <p>Klaar? Download je CV en stuur ‘m mee met je sollicitatie.</p>
+            </div>
+          </div>
+        </div>
+
+        <aside class="steps-aside reveal-on-scroll">
+          <h3>Werkt gewoon in je browser</h3>
+          <p>
+            Je hoeft niets te installeren. Open de CV-builder, vul je gegevens in en exporteer je CV als PDF of afbeelding.
+          </p>
+          <div class="steps-highlight">
+            <span class="steps-highlight-pill">Geen account</span>
+            <span class="steps-highlight-pill">Geen kosten</span>
+            <span class="steps-highlight-pill">Geen tracking</span>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRIVACY -->
+  <section id="privacy" class="section">
+    <div class="wrapper">
+      <div class="section-header">
+        <div class="section-title">
+          <div class="section-kicker">Privacy</div>
+          <h2>Jouw gegevens blijven van jou.</h2>
+        </div>
+      </div>
+
+      <div class="privacy-panel reveal-on-scroll">
+        <p>
+          Alles wat je invult in de CV-builder wordt alleen in jouw eigen browser gebruikt.
+          Er wordt niets automatisch naar een server verstuurd.
+        </p>
+        <ul>
+          <li>Geen verplichte registratie of login.</li>
+          <li>Geen automatische opslag in een account.</li>
+          <li>Je kunt zelf je PDF of afbeelding downloaden en lokaal bewaren.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="wrapper">
+      <div class="cta-inner">
+        <div class="cta-main">
+          <h2>Klaar om je CV te maken?</h2>
+          <p>Start direct met invullen. Je kunt later altijd terugkomen om je CV bij te werken.</p>
+        </div>
+        <div class="cta-actions">
+          <a href="cv.html" class="btn btn-primary">Start nu met je CV</a>
+          <a href="#features" class="btn btn-ghost">Eerst nog even rondkijken</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrapper footer-inner">
+    <p>© <span id="year"></span> CV Builder. Gemaakt voor gebruik in je eigen browser.</p>
+    <div class="footer-links">
+      <a href="#privacy">Privacy</a>
+      <a href="cv.html">Naar de CV-builder</a>
     </div>
   </div>
+</footer>
+
+<script>
+  // Dynamisch jaar
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Header shadow bij scroll
+  const header = document.querySelector(".site-header");
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 10) header.classList.add("scrolled");
+    else header.classList.remove("scrolled");
+  });
+
+  // Parallax voor side-banners
+  const sideLogos = Array.from(document.querySelectorAll(".cv-side"));
+  if (sideLogos.length) {
+    const speeds = [0.04, 0.07, 0.05, 0.08]; // allemaal trager dan scroll
+
+    function updateSideParallax() {
+      const y = window.scrollY || window.pageYOffset || 0;
+      sideLogos.forEach((el, index) => {
+        const offset = y * speeds[index];
+        el.style.transform = `translate3d(0, ${offset}px, 0)`;
+      });
+    }
+
+    updateSideParallax();
+    window.addEventListener("scroll", updateSideParallax);
+  }
+
+  // Reveal animatie
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+
+  document.querySelectorAll(".reveal-on-scroll").forEach(el => observer.observe(el));
+</script>
+
 </body>
 </html>
