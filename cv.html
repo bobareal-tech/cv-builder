@@ -7,13 +7,12 @@
   <meta name="description"
         content="Maak gratis een professionele CV in je browser en download als PDF of afbeelding.">
   <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@600&display=swap"
-        crossorigin="anonymous">
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@600&display=swap">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- SVG iconen (moeten zo vroeg mogelijk in de body staan voor html2canvas) -->
+<!-- SVG iconen -->
 <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
   <symbol id="icon-user" viewBox="0 0 24 24">
     <path d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm0 2c-3.33 0-10 1.67-10 5v3h20v-3c0-3.33-6.67-5-10-5z"/>
@@ -94,9 +93,7 @@
       <!-- Social media -->
       <div class="sidebar-section-title">Social media</div>
       <hr>
-      <ul class="social-list" id="socialList">
-        <!-- wordt via script.js gevuld -->
-      </ul>
+      <ul class="social-list" id="socialList"></ul>
 
       <!-- Vaardigheden -->
       <div class="sidebar-section-title">Vaardigheden</div>
@@ -136,16 +133,11 @@
   </div>
 </div>
 
-<!-- Libraries voor export (moeten vóór script.js staan) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
-        integrity="sha512-BNa5lHk6lQi/tGcYVqfhfJrhcQH5kzSc2Y6LQ8Nmjo4cSiE1WX86Z9dSgPDnRKZ77N8DfszC5jDgkS9vXw+K2A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- Export-libs -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
-        integrity="sha512-/FZ6lVcT3jqWi2lCFQ2kPzAV/QlIoC5cDIp7GYR2IKqvU9T698z0O60GJ0qUOcsYkn2F6VZ8xThonUu0v3C2NQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-<!-- Jouw logica (editor + download functionaliteit) -->
+<!-- Jouw logica -->
 <script src="script.js"></script>
 </body>
 </html>
